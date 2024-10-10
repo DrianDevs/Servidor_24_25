@@ -26,69 +26,32 @@ $proveedor_b = [
 // VOY CONFIRMANDO QUE LA PROGRAMACIÓN ES CORRECTA//
 //echo "<pre>"; print_r($proveedor_b); echo "</pre>";
 
-
-//Funcion que compara dos arrays por la columna pasada por parametro. Devuelve la diferencia en forma de array
-function compararMatricesPorCategoria(array $array1, array $array2, string $categoria)
-{
-    $categoriaArray1 = array_column($array1, $categoria);
-    $categoriaArray2 = array_column($array2, $categoria);
-    return array_diff($categoriaArray1, $categoriaArray2);
-}
-
-$diferencias_proveedor_a = compararMatricesPorCategoria($inventario_actual, $proveedor_a, 'producto');
-$diferencias_proveedor_b = compararMatricesPorCategoria($inventario_actual, $proveedor_b, 'producto');
-
-echo "<pre>";
-print_r(nl2br("Imprimo por pantalla las diferencias del inventario actual con el proveedor_a \n"));
-print_r($diferencias_proveedor_a);
-echo "</pre>";
-echo "<pre>";
-print_r(nl2br("Imprimo por pantalla las diferencias del inventario actual con el proveedor_b \n"));
-print_r($diferencias_proveedor_b);
-echo "</pre>";
-echo "<p>----------------------</p>";
+// Comparar inventarios con proveedor A con la función array_column
+$productos_actual = array_column($inventario_actual, 'producto');
+//echo "<pre>"; print_r(nl2br("Imprimo por pantalla los productos del inventariado actual_a \n"));print_r($productos_actual); echo "</pre>";
+$productos_proveedor_a = array_column($proveedor_a, 'producto');
+//echo "<pre>"; print_r(nl2br("Imprimo por pantalla los productos del proveedor_a \n"));print_r($productos_proveedor_a ); echo "</pre>";
+$diferencias_proveedor_a = array_diff($productos_actual, $productos_proveedor_a);
+//echo "<pre>"; print_r(nl2br("Imprimo por pantalla las diferencias con el proveedor_a \n"));print_r($diferencias_proveedor_a); echo "</pre>";
 
 
+// Comparar inventarios con proveedor B
+$productos_proveedor_b = array_column($proveedor_b, 'producto');
+//echo "<pre>"; print_r(nl2br("Imprimo por pantalla los productos del proveedor_b \n"));print_r($productos_proveedor_b ); echo "</pre>";
+$diferencias_proveedor_b = array_diff($productos_actual, $productos_proveedor_b);
+//echo "<pre>"; print_r(nl2br("Imprimo por pantalla las diferencias con el proveedor_b \n"));print_r($diferencias_proveedor_b ); echo "</pre>";
 
-// Funcion que recibe 3 arrays y los une. Devuelve un array con la union.
+// Unir inventarios
+$inventario_unido = array_merge($inventario_actual, $proveedor_a, $proveedor_b);
+//echo "<pre>"; print_r(nl2br("Inventarios unidos sin eliminar duplicados \n"));print_r($inventario_unido); echo "</pre>";
 
-function unirMatrices(array $array1, array $array2, array $array3)
-{
-    return array_merge($array1, $array2, $array3);
-}
-
-
-$inventario_unido = unirMatrices($inventario_actual, $proveedor_a, $proveedor_b);
-echo "<pre>";
-print_r(nl2br("Inventarios unidos sin eliminar duplicados \n"));
-print_r($inventario_unido);
-echo "</pre>";
-echo "<p>----------------------</p>";
-
-
-// Funcion que cuenta productos por categoría pasadas por parametro
-function contarPorCategorias(array $array1, string $categoria)
-{
-    $categorias = array_column($array1, $categoria);
-    return array_count_values($categorias);
-}
-
-$conteo_categorias = contarPorCategorias($inventario_unido, 'categoria');
-echo "<pre>";
-print_r(nl2br("Conteo de categorías \n"));
-print_r($conteo_categorias);
-echo "</pre>";
-
-
+// Contar productos por categorías
+$categorias = array_column($inventario_unido, 'categoria');
+$conteo_categorias = array_count_values($categorias);
+//echo "<pre>"; print_r(nl2br("Conteo de categorías \n"));print_r($conteo_categorias); echo "</pre>";
 
 // Extraer los precios
-
-function extraerPrecios(array $array1, string $columna)
-{
-    return array_column($array1, $columna);
-}
-;
-$precios = extraerPrecios($inventario_unido, 'precio');
+$precios = array_column($inventario_unido, 'precio');
 
 // Ordenar los precios y aplicar ese orden al array de productos unidos
 sort($precios);
