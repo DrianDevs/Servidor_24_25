@@ -1,34 +1,26 @@
 <?php
-// Obtener los valores del formulario
-$nombre = $_POST['nombre'];
-$edad = $_POST['edad'];
-$altura = $_POST['altura'];
-$activo = $_POST['activo'];
+$nombre = $_GET['nombre'];
+$edad = $_GET['edad'];
+$altura = $_GET['altura'];
+$activo = $_GET['activo'];
 
-// Comprobaciones de tipo
-if (!is_string($nombre)) {
-    echo 'El nombre no es una cadena';
+
+if (is_string($nombre)) {
+    echo 'El nombre es una cadena';
     echo "<br>";
 }
 
-if (!is_int($edad) || $edad < 0) {
-    echo 'La edad no es un número entero válido';
+if (is_int($edad)) {
+    echo 'La edad es un número entero';
     echo "<br>";
 }
 
-if (!is_float($altura) || $altura < 0) {
-    echo 'La altura no es un número flotante válido';
+if (is_float($altura)) {
+    echo 'La altura es un número flotante';
     echo "<br>";
 }
 
-if (!is_bool($activo)) {
-    echo 'El activo no es un booleano';
+if (is_bool($activo)) {
+    echo 'El activo es un booleano';
     echo "<br>";
 }
-
-// Imprimir los valores y sus tipos
-echo "Nombre: $nombre (tipo: " . gettype($nombre) . ")";
-echo "Edad: $edad (tipo: " . gettype($edad) . ")";
-echo "Altura: $altura (tipo: " . gettype($altura) . ")";
-echo "Activo: $activo (tipo: " . gettype($activo) . ")";
-?>
