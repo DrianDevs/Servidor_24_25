@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulario de ejemplo</title>
+  </head>
+  <body>
+    <h1>Formulario de ejemplo</h1>
+    <form action="procesar.php" method="get">
+      <label for="nombre">Nombre:</label>
+      <input type="text" name="nombre" id="nombre" /><br /><br />
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" /><br /><br />
+      <label for="edad">Edad:</label>
+      <input type="number" name="edad" id="edad" /><br /><br />
+      <label for="descripcion">Descripcion:</label><br />
+      <textarea id="descripcion" name="descripcion"></textarea><br /><br />
+      <label for="contrasena">Clave:</label>
+      <input type="password" id="contrasena" name="contrasena" /><br /><br />
+      <label for="intereses">Intereses:</label>
+      <input
+        type="checkbox"
+        id="intereses"
+        name="intereses[]"
+        value="Deportes"
+      />
+      <label for="intereses">Deportes</label>
+      <input type="checkbox" id="intereses" name="intereses[]" value="Música" />
+      <label for="intereses">Musica</label>
+      <input type="checkbox" id="intereses" name="intereses[]" value="Cine" />
+      <label for="intereses">Cine</label><br /><br />
+      <label for="genero">Genero:</label>
+      <input type="radio" id="genero" name="genero" value="Masculino" />
+      <label for="genero">Masculino</label>
+      <input type="radio" id="genero" name="genero" value="Femenino" />
+      <label for="genero">Femenino</label>
+      <input type="radio" id="genero" name="genero" value="Otro" />
+      <label for="genero">Otro</label><br /><br />
+      <label for="pais">Pais:</label>
+      <select id="pais" name="pais[]" multiple>
+        <option value="España">Brasil</option>
+        <option value="México">Mexico</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Chile">Chile</option>
+        <option value="Perú">Peru</option></select
+      ><br /><br />
+      <input type="submit" value="Enviar" />
+    </form>
+  </body>
+</html>
