@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+$_SESSION['tiempo_inicio'] = time();
 
 $peliculas = [
     [
@@ -23,11 +23,11 @@ $peliculas = [
 <html>
 
 <head>
-    <title>Cine Particular</title>
+    <title>Cine Byte</title>
 </head>
 
 <body>
-    <h1>Bienvenido al cine particular</h1>
+    <h1>Bienvenido al Cine Byte</h1>
     <h2>Seleccione una película:</h2>
     <ul>
         <?php foreach ($peliculas as $pelicula) { ?>

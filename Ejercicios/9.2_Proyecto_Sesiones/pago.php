@@ -1,20 +1,18 @@
 <?php
 session_start();
+$_SESSION['tiempo_inicio'] = time();
 
 // Comprobar si se han enviado los datos del formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener datos de la sesión y del formulario
-    $pelicula = $_POST['pelicula'];
-    $horario = $_POST['horario'];
-    $asientosSeleccionados = $_POST['asientos']; // Asientos seleccionados
+
+    $asientosSeleccionados = $_POST['asientos'];
+    $_SESSION['asientos'] = $_POST['asientos']; //Guardamos los asientos en la sesion
 
     // Suponiendo un precio por asiento
-    $precioPorAsiento = 10; // Puedes cambiar este valor según lo que desees
+    $precioPorAsiento = 7;
     $total = count($asientosSeleccionados) * $precioPorAsiento; // Total a pagar
-
 } else {
-    echo "No se han enviado datos válidos.";
-    exit; // Termina el script si no hay datos
+    exit;
 }
 
 ?>
@@ -29,16 +27,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <h1>Resumen de la Compra</h1>
-    <p><strong>Película:</strong> <?php echo htmlspecialchars($pelicula); ?></p>
-    <p><strong>Horario:</strong> <?php echo htmlspecialchars($horario); ?></p>
+    <p><strong>Película:</strong> <?php echo $_SESSION['pelicula']; ?></p>
+    <p><strong>Horario:</strong> <?php echo $_SESSION['horario']; ?></p>
     <p><strong>Asientos seleccionados:</strong></p>
     <ul>
         <?php foreach ($asientosSeleccionados as $asiento): ?>
             <?php
-            // Aquí puedes usar explode para dividir fila y columna
+
             $partes = explode('-', $asiento);
-            $fila = intval($partes[0]) + 1; // +1 para mostrar como 1, 2, 3...
-            $columna = intval($partes[1]) + 1; // +1 para mostrar como 1, 2, 3...
+            $fila = intval($partes[0]) + 1;
+            $columna = intval($partes[1]) + 1;
             ?>
             <li>Asiento <?php echo $columna . ' de la fila ' . $fila; ?></li>
         <?php endforeach; ?>
