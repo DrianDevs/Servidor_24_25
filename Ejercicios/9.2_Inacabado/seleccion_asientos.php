@@ -39,6 +39,20 @@ if (isset($_POST['horario'])) {
 }
 
 
+function leerAsientosOcupados()
+{
+    $contenido = file_get_contents('asientos_ocupados.json');
+    return json_decode($contenido, true) ?? [];
+}
+
+
+$asientosOcupados = leerAsientosOcupados();
+$pelicula = $_SESSION['pelicula'];
+$sesion = $_SESSION['horario'];
+$asientosDeEstaSesion = $asientosOcupados[$pelicula][$sesion] ?? [];
+
+
+
 ?>
 
 <!DOCTYPE html>
