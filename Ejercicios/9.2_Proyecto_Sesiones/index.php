@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo "<p>El ID de la sesión es: " . session_id() . "</p>";
 $_SESSION['tiempo_inicio'] = time();
 
 $peliculas = [

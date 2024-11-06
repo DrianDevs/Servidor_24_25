@@ -1,6 +1,28 @@
 <?php
 session_start();
-$_SESSION['tiempo_inicio'] = time();
+
+// Establecer un tiempo de inicio especifico para la página de pago
+if (!isset($_SESSION['tiempo_inicio_pago'])) {
+    $_SESSION['tiempo_inicio_pago'] = time();
+}
+
+$tiempo_transcurrido_pago = time() - $_SESSION['tiempo_inicio_pago'];
+
+
+if ($tiempo_transcurrido_pago > 62) {
+    unset($_SESSION['asientos']);
+    unset($_SESSION['tiempo_inicio_pago']);
+
+    header("Location: index.php");
+    exit;
+}
+
+echo "<p>El ID de la sesión es: " . session_id() . "</p>";
+
+
+$tiempo_restante_pago = 62 - $tiempo_transcurrido_pago;
+echo "<p>Te quedan $tiempo_restante_pago segundos para completar el pago.</p>";
+
 
 // Comprobar si se han enviado los datos del formulario
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -42,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endforeach; ?>
     </ul>
     <p><strong>Total a pagar:</strong> €<?php echo $total; ?></p>
-    <button onclick="location.href='realizar_pago.php'">Continuar al Pago</button>
+    <button href='#'>Continuar al Pago</button>
 </body>
 
 </html>

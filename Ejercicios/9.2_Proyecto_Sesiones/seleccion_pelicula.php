@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo "<p>El ID de la sesión es: " . session_id() . "</p>";
 $_SESSION['tiempo_inicio'] = time();
 
 $peliculas = [
@@ -18,7 +19,7 @@ $peliculas = [
 ];
 
 
-if (isset($_GET['pelicula'])) { //Comprobar si le ha llegado la pelicula
+if (isset($_GET['pelicula'])) {
     $pelicula_seleccionada = $_GET['pelicula'];
     $horarios = null;
 

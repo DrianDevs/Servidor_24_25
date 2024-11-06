@@ -1,25 +1,25 @@
 <?php
 session_start();
+$_SESSION['tiempo_inicio_pago'] = time();
 
 if (!isset($_SESSION['tiempo_inicio'])) {
-    $_SESSION['tiempo_inicio'] = time();  // Establece la hora de inicio cuando no está definida
+    $_SESSION['tiempo_inicio'] = time();
 }
 
-
-// Calcular el tiempo transcurrido
 $tiempo_transcurrido = time() - $_SESSION['tiempo_inicio'];
 
-// Verificar si ha pasado mas de un minuto (60 segundos)
-if ($tiempo_transcurrido > 62) {
-    session_unset();   // Limpia todas las variables de sesión
-    session_destroy();
 
-    // Redirigir a la pagina principal
+if ($tiempo_transcurrido > 62) {
+    unset($_SESSION['asientos']);
+    unset($_SESSION['tiempo_inicio']);
+
     header("Location: index.php");
     exit;
 }
 
-$tiempo_restante = 61 - $tiempo_transcurrido;
+echo "<p>El ID de la sesión es: " . session_id() . "</p>";
+
+$tiempo_restante = 62 - $tiempo_transcurrido;
 echo "Te quedan $tiempo_restante segundos para seleccionar tus asientos.";
 
 $asientos = [
@@ -30,11 +30,9 @@ $asientos = [
     [0, 0, 0, 0, 0, 0], // Fila 5
 ];
 
-// Se compruebasi se ha enviado el horario
-if (isset($_POST['horario'])) {
-    $horario_seleccionado = $_POST['horario']; // Obtener el horario seleccionado desde el formulario
 
-    // Guardar el horario seleccionado en la sesion
+if (isset($_POST['horario'])) {
+    $horario_seleccionado = $_POST['horario'];
     $_SESSION['horario'] = $horario_seleccionado;
 } else {
     exit;
@@ -50,7 +48,7 @@ if (isset($_POST['horario'])) {
     <meta charset="UTF-8">
     <title>Selección de Asientos</title>
     <script>
-        function actualizarMensaje() {  //Funcion que actualiza la pagina cuando se selecciona uno o varios asientos (PROCEDENTE DE FUENTES EXTERNAS)
+        function actualizarMensaje() {  //Funcion que actualiza la pagina cuando se selecciona uno o varios asientos
             const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
             const mensajeElemento = document.getElementById('mensaje_seleccion');
 
@@ -78,7 +76,7 @@ if (isset($_POST['horario'])) {
     <form action="pago.php" method="POST">
         <?php foreach ($asientos as $fila_index => $fila): ?>
             <div>
-                <?php foreach ($fila as $asiento_index => $asiento): ?> <!--(PROCEDENTE DE FUENTES EXTERNAS)-->
+                <?php foreach ($fila as $asiento_index => $asiento): ?>
                     <?php if ($asiento == 0): ?>
                         <input type="checkbox" name="asientos[]" value="<?php echo $fila_index . '-' . $asiento_index; ?>"
                             onclick="actualizarMensaje(this.value)">
@@ -93,7 +91,7 @@ if (isset($_POST['horario'])) {
         <input type="hidden" name="pelicula" value="<?php echo $_SESSION['pelicula']; ?>">
         <input type="hidden" name="horario" value="<?php echo $_SESSION['horario']; ?>">
 
-        <div id="mensaje_seleccion"></div> <!-- Contenedor para el mensaje -->
+        <div id="mensaje_seleccion"></div>
         <br>
         <button type="submit" id="botonAsientos" disabled>Continuar al Pago</button>
     </form>
