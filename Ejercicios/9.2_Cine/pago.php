@@ -30,16 +30,16 @@ if (isset($_GET['pagar'])) {
     unset($_SESSION['asientos_sesion']);
 
     // Crear el archivo de entrada .txt
-    $entradas = "Entradas para la película:\n";
-    $entradas .= "Película: " . obtenerNombrePelicula($pelicula_id) . "\n";
-    $entradas .= "Sesión: " . obtenerSesionPorId($sesion_id) . "\n";
-    $entradas .= "Asientos seleccionados: " . implode(", ", $asientos_sesion) . "\n";
-    $entradas .= "Total: " . $total . " €\n";
-    $entradas .= "Gracias por tu compra.";
+    $ticket = "Entradas para la película:\n";
+    $ticket .= "Película: " . obtenerNombrePelicula($pelicula_id) . "\n";
+    $ticket .= "Sesión: " . obtenerSesionPorId($sesion_id) . "\n";
+    $ticket .= "Asientos seleccionados: " . implode(", ", $asientos_sesion) . "\n";
+    $ticket .= "Total: " . $total . " €\n";
+    $ticket .= "Gracias por tu compra.";
 
     // Crear un archivo .txt con la entrada
     $filename = "entradas_" . session_id() . ".txt";
-    file_put_contents($filename, $entradas);
+    file_put_contents($filename, $ticket);
 
     // Descargar el archivo .txt
     header('Content-Type: text/plain');

@@ -8,11 +8,11 @@ include('funciones.php');
 $pelicula_id = isset($_GET['pelicula_id']) ? $_GET['pelicula_id'] : null;
 $sesion_id = isset($_GET['sesion_id']) ? $_GET['sesion_id'] : null;
 $asiento = isset($_GET['asiento']) ? $_GET['asiento'] : null; // Asiento seleccionado al pulsar sobre el botón de libre
-$liberar_asientos = isset($_GET['liberar_asientos']) ? $_GET['liberar_asientos'] : null;    // Booleano para comprobar si se deben liberar asientos
+$cerrar_sesion = isset($_GET['liberar_asientos']) ? $_GET['liberar_asientos'] : null;    // Booleano para comprobar si se deben liberar asientos
 $asientos_sesion = isset($_SESSION['asientos_sesion']) ? $_SESSION['asientos_sesion'] : []; // Array de asientos seleccionados
 
 
-if ($liberar_asientos) {
+if ($cerrar_sesion) {
     liberarAsientos($sesion_id, $asientos_sesion);
     unset($_SESSION['asientos_sesion']);
     header('Location: seleccion_pelicula.php?pelicula_id=' . $pelicula_id);

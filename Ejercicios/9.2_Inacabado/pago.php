@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Llamar a la función para actualizar asientos ocupados
     if (isset($_SESSION['pelicula']) && isset($_SESSION['horario'])) {
         $pelicula = $_SESSION['pelicula'];
-        $horario = $_SESSION['horario'];
-        actualizarAsientosOcupados($pelicula, $horario, $asientosSeleccionados);
+        $accion = $_SESSION['horario'];
+        actualizarAsientosOcupados($pelicula, $accion, $asientosSeleccionados);
     }
 } else {
     exit;
