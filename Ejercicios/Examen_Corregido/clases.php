@@ -6,6 +6,8 @@ echo "SID: " . session_id() . "<br>";
 
 inicializar_horarios();
 
+$clases = array_keys($_SESSION['horarios_clases']);
+
 if (isset($_POST['clase'])) {
     $claseSeleccionada = $_POST['clase'];
     $_SESSION['clase'] = $claseSeleccionada;

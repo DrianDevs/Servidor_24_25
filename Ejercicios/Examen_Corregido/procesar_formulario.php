@@ -25,7 +25,7 @@ echo "<br>";
 
 <body>
     <a href="final.php?confirmar=true"><button>Confirmar</button></a>
-    <a href="final.php?confirmar=false"><button>Eliminar selección</button></a>
+    <a href="final.php?confirmar=false"><button>Cancelar</button></a>
 </body>
 
 </html>
