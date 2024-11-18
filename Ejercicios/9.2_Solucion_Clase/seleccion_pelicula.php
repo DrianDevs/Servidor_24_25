@@ -12,7 +12,7 @@ $sesiones = obtenerSesiones($pelicula_id);
 
 // Mostrar las sesiones disponibles
 echo "<h1>Selecciona una sesión para la película</h1>";
-foreach ($sesiones as $sesion) {
-    echo "<p><a href='seleccion_asientos.php?pelicula_id=$pelicula_id&sesion_id=" . $sesion['id'] . "'>Sesión " . $sesion['hora'] . "</a></p>";
+foreach ($sesiones as $provincia) {
+    echo "<p><a href='seleccion_asientos.php?pelicula_id=$pelicula_id&sesion_id=" . $provincia['id'] . "'>Sesión " . $provincia['hora'] . "</a></p>";
 }
 ?>

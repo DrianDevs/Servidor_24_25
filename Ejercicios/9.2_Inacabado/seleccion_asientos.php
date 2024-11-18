@@ -48,8 +48,8 @@ function leerAsientosOcupados()
 
 $asientosOcupados = leerAsientosOcupados();
 $pelicula = $_SESSION['pelicula'];
-$sesion = $_SESSION['horario'];
-$asientosDeEstaSesion = $asientosOcupados[$pelicula][$sesion] ?? [];
+$provincia = $_SESSION['horario'];
+$asientosDeEstaSesion = $asientosOcupados[$pelicula][$provincia] ?? [];
 
 
 

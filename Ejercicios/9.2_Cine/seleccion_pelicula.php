@@ -32,11 +32,11 @@ $pelicula_nombre = obtenerNombrePelicula($pelicula_id);
     <h1>Selecciona una sesión para <?php echo $pelicula_nombre; ?></h1>
 
     <ul>
-        <?php foreach ($sesiones as $sesion): ?>
+        <?php foreach ($sesiones as $provincia): ?>
             <li>
                 <a
-                    href="seleccion_asientos.php?pelicula_id=<?php echo $pelicula_id; ?>&sesion_id=<?php echo $sesion['id_sesion']; ?>">
-                    <?php echo $sesion['hora']; ?>
+                    href="seleccion_asientos.php?pelicula_id=<?php echo $pelicula_id; ?>&sesion_id=<?php echo $provincia['id_sesion']; ?>">
+                    <?php echo $provincia['hora']; ?>
                 </a>
             </li>
         <?php endforeach; ?>
