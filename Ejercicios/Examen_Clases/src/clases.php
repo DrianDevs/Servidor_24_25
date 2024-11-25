@@ -1,27 +1,31 @@
 <?php
+require_once("../app/Peticion.php");
 session_start();
-include('horario.php');
+echo "SID: " . session_id() . "<br>";
 
-$clases = obtenerClases();
-$horarios = obtenerHorarios();
+$clases = array_keys($_SESSION['horarios']);
 
 if (isset($_POST['clase'])) {
     $claseSeleccionada = $_POST['clase'];
-    $_SESSION['clase'] = $claseSeleccionada;
-    $horariosClase = $horarios[$claseSeleccionada];
+
+    $peticion = new Peticion();
+    $peticion->setClase($claseSeleccionada);
+    $_SESSION['peticion'] = $peticion;
+
+    $horariosClase = $_SESSION['horarios'][$claseSeleccionada];
+
     echo "<h2>Fechas y horas para las sesiones de " . $claseSeleccionada . "</h2>";
+    echo "<h3>Selecciona una fecha y hora para la reserva</h3>";
 
-    echo '<form action="procesar_formulario.php" method="POST">';
-    for ($i = 0; $i < count($horariosClase); $i++) {
-        echo '<input type="radio" name="horario" value=' . $i . ' required>';
-        echo $horariosClase[$i + 1]["dia"];
-        echo " ";
-        echo $horariosClase[$i + 1]["hora"];
+    echo "<form action='procesar_formulario.php' method='POST'>";
+    foreach ($horariosClase as $key => $value) {
+        echo "<input type='radio' name='horario' value='" . $key . "' required>";
+        echo $key . ": " . $value['hora'];
     }
-    echo "<br>";
-    echo '<input type="radio" name="accion" value="realizar" required/>Realizar la reserva';
-    echo '<input type="radio" name="accion" value="anular" required/>Anular la reserva';
-
+    echo "<br><br>";
+    echo '<input type="radio" name="accion" value="realizar" required/>Realizar una reserva';
+    echo '<input type="radio" name="accion" value="anular" required/>Anular una reserva';
+    echo "<br><br>";
     echo '<button type="submit">Continuar</button>';
     echo '</form>';
 }
@@ -35,9 +39,8 @@ if (isset($_POST['clase'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo  
-        de Actividades - Tu Gimnasio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Catálogo de Actividades - Tu Gimnasio</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -45,7 +48,7 @@ if (isset($_POST['clase'])) {
 
     <section class="actividad">
         <h2>Clase de Yoga</h2>
-        <img src="yoga.jpg" alt="Postura de Yoga by Miguel CC BY-SA 2.0">
+        <img src="../img/yoga.jpg" alt="Postura de Yoga by Miguel CC BY-SA 2.0">
         <p>Complementa tu rutina de gimnasio con yoga. Aumenta tu fuerza y resistencia de una manera diferente, mejora
             tu postura y alineación, y reduce el riesgo de lesiones. El yoga te ayudará a esculpir músculos y a ganar
             flexibilidad de una forma más suave y consciente.</p>
@@ -54,14 +57,14 @@ if (isset($_POST['clase'])) {
 
     <section class="actividad">
         <h2>Clase de Zumba</h2>
-        <img src='zumba.jpg' alt='Zumba by Claude PERON CC BY-SA 3.0'>
+        <img src='../img/zumba.jpg' alt='Zumba by Claude PERON CC BY-SA 3.0'>
         <p>¡Tonifica tu cuerpo y mejora tu condición física mientras te mueves al ritmo de la música! La Zumba es una
             forma divertida y efectiva de quemar calorías, fortalecer tus músculos y mejorar tu coordinación. ¡Olvídate
             de la monotonía y descubre una nueva forma de entrenar!.</p>
     </section>
     <section class="actividad">
         <h2>Clase de Crossfit</h2>
-        <img src="crossfit.jpg" alt="Clase de Crossfit">
+        <img src="../img/crossfit.jpg" alt="Clase de Crossfit">
         <p>¿Buscas un entrenamiento que te desafíe al máximo y te haga sentir como un auténtico atleta? ¡Nuestras clases
             de CrossFit son para ti! Combina ejercicios funcionales de alta intensidad con movimientos olímpicos,
             fortaleciendo todo tu cuerpo y mejorando tu resistencia, fuerza y agilidad. ¡Prepárate para sudar, quemar

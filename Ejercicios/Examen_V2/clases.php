@@ -73,9 +73,9 @@ if (isset($_POST['clase'])) {
 
     <h3>Selecciona una clase para mostrar los horarios</h3>
     <form action="clases.php" method="POST">
-        <?php foreach ($clases as $accion): ?>
-            <input type="radio" name="clase" value="<?php echo $accion; ?>" required>
-            <?php echo $accion;
+        <?php foreach ($clases as $clase): ?>
+            <input type="radio" name="clase" value="<?php echo $clase; ?>" required>
+            <?php echo $clase;
             echo "<br>"; ?>
         <?php endforeach; ?>
         <button type="submit">Continuar</button>

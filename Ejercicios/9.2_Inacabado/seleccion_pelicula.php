@@ -50,11 +50,11 @@ if (isset($_GET['pelicula'])) {
     <h1>Selecciona un horario para <?php echo $pelicula_seleccionada; ?></h1>
     <h2>Horarios disponibles:</h2>
     <form action="seleccion_asientos.php" method="POST">
-        <?php foreach ($horarios as $accion): ?> <!--Imprimir en el html cada horario para la pelicula seleccionada-->
+        <?php foreach ($horarios as $clase): ?> <!--Imprimir en el html cada horario para la pelicula seleccionada-->
             <label>
-                <input type="radio" name="horario" value="<?php echo $accion; ?>" required>
+                <input type="radio" name="horario" value="<?php echo $clase; ?>" required>
                 <!--Crea un input radio para cada horario-->
-                <?php echo $accion; ?>
+                <?php echo $clase; ?>
                 <!--Imprime el horario junto al input-->
             </label><br>
         <?php endforeach; ?>

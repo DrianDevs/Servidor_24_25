@@ -3,21 +3,22 @@ session_start();
 session_regenerate_id();
 //evita el almacenamiento en caché
 header('Cache-Control: no-store, no-cache, must-revalidate');
-require_once 'horario.php';
-$usuarios = array(
-    'admin' => 'admin',
-    'usuario' => 'usuario'
-);
+require_once("app/Usuario.php");
+require_once("app/BD.php");
+require_once("app/Horario.php");
+
+$bd = new BD();
+$usuarios = $bd->getUsuarios();
 
 if (isset($_POST['usuario']) && isset($_POST['contrasena'])) {
-    $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $usuario = new Usuario($_POST['usuario'], $_POST['contrasena']);
 
-    if (isset($usuarios[$usuario]) && $usuarios[$usuario] === $contrasena) {
+    if (isset($usuarios[$usuario->getUsuario()]) && $usuarios[$usuario->getUsuario()] === $usuario->getContrasena()) {
         $_SESSION['usuario'] = $usuario;
-        //inicializa los horarios
-        inicializar_horarios();
-        header('Location: main.php');
+        //inicializa los horarios en la sesión
+        $horarios = new Horario();
+        $_SESSION['horarios'] = $horarios->getHorarios();
+        header('Location: src/main.php');
         exit;
     } else {
         echo "<br><div style='text-align: center;font-weight: bold; font-size: 16px;'> Usuario o contraseña incorrectos. </div>";

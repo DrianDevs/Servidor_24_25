@@ -49,8 +49,8 @@ if (isset($_POST['horario'])) {
 }
 
 if (isset($_POST['accion'])) {
-    $accion = $_POST['accion'];
-    if ($accion == "anular") {
+    $clase = $_POST['accion'];
+    if ($clase == "anular") {
         echo "<h2>Se va a proceder a anular su reserva</h2>";
     } else {
         echo "<h2>Se va a realizar una reserva</h2>";

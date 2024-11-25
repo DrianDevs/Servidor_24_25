@@ -21,7 +21,7 @@ print_r(nl2br("\n El SID actual antes de iniciar el código de cierre de sesion 
 
 <body>
     <header>
-        <img src="logo.png" alt="Logo de Iron Forge">
+        <img src="img/logo.png" alt="Logo de Iron Forge">
         <h1>Donde se forjan las leyendas</h1>
     </header>
     <nav>

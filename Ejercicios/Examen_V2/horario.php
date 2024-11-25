@@ -85,7 +85,7 @@ function reservar_plaza($clase, $dia)
 
 function liberar_plaza($clase, $dia)
 {
-    if (isset($_SESSION['horarios_clases'][$clase][$dia]) && $_SESSION['horarios_clases'][$clase][$dia]['plazas_reservadas'] > 1) {
+    if (isset($_SESSION['horarios_clases'][$clase][$dia]) && $_SESSION['horarios_clases'][$clase][$dia]['plazas_reservadas'] >= 1) {
         ++$_SESSION['horarios_clases'][$clase][$dia]['plazas_disponibles'];
         --$_SESSION['horarios_clases'][$clase][$dia]['plazas_reservadas'];
         $_SESSION['horarios_clases'][$clase][$dia]['reservado'] = 0;
