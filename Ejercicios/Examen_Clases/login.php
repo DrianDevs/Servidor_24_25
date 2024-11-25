@@ -1,11 +1,9 @@
 <?php
+require_once("autoload.php");
 session_start();
 session_regenerate_id();
 //evita el almacenamiento en caché
 header('Cache-Control: no-store, no-cache, must-revalidate');
-require_once("app/Usuario.php");
-require_once("app/BD.php");
-require_once("app/Horario.php");
 
 $bd = new BD();
 $usuarios = $bd->getUsuarios();
@@ -15,9 +13,10 @@ if (isset($_POST['usuario']) && isset($_POST['contrasena'])) {
 
     if (isset($usuarios[$usuario->getUsuario()]) && $usuarios[$usuario->getUsuario()] === $usuario->getContrasena()) {
         $_SESSION['usuario'] = $usuario;
-        //inicializa los horarios en la sesión
+
         $horarios = new Horario();
-        $_SESSION['horarios'] = $horarios->getHorarios();
+        $_SESSION['horarios'] = $horarios;
+
         header('Location: src/main.php');
         exit;
     } else {

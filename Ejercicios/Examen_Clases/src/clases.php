@@ -1,9 +1,9 @@
 <?php
-require_once("../app/Peticion.php");
+require_once("../autoload.php");
 session_start();
-echo "SID: " . session_id() . "<br>";
 
-$clases = array_keys($_SESSION['horarios']);
+$horarios = $_SESSION['horarios']->getHorarios();
+$clases = array_keys($horarios);
 
 if (isset($_POST['clase'])) {
     $claseSeleccionada = $_POST['clase'];
@@ -12,7 +12,7 @@ if (isset($_POST['clase'])) {
     $peticion->setClase($claseSeleccionada);
     $_SESSION['peticion'] = $peticion;
 
-    $horariosClase = $_SESSION['horarios'][$claseSeleccionada];
+    $horariosClase = $horarios[$claseSeleccionada];
 
     echo "<h2>Fechas y horas para las sesiones de " . $claseSeleccionada . "</h2>";
     echo "<h3>Selecciona una fecha y hora para la reserva</h3>";

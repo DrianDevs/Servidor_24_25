@@ -1,21 +1,20 @@
 <?php
+require_once("../autoload.php");
 session_start();
-echo "SID: " . session_id() . "<br>";
-include('horario.php');
 
-if (!isset($_SESSION['clase']) || !isset($_POST['horario']) || !isset($_POST['accion'])) {
+
+if (!isset($_SESSION['peticion']) || !isset($_POST['horario']) || !isset($_POST['accion'])) {
     echo "<h2>Le faltan datos por seleccionar</h2>";
     exit;
 }
 
-$_SESSION['horario'] = $_POST['horario'];
-$_SESSION['accion'] = $_POST['accion'];
+$_SESSION['peticion']->setDia($_POST['horario']);
+$_SESSION['peticion']->setAccion($_POST['accion']);
 
-echo "Clase: " . $_SESSION['clase'] . "<br>";
-echo "Horario: " . $_POST['horario'] . " " . $_SESSION['horarios_clases'][$_SESSION['clase']][$_POST['horario']]['hora'] . "<br>";
-echo "Acción: " . $_POST['accion'] . " reserva" . "<br>";
+echo "Clase: " . $_SESSION['peticion']->getClase() . "<br>";
+echo "Horario: " . $_SESSION['peticion']->getDia() . " " . $_SESSION['horarios']->getHorarios()[$_SESSION['peticion']->getClase()][$_SESSION['peticion']->getDia()]['hora'] . "<br>";
+echo "Acción: " . $_SESSION['peticion']->getAccion() . " reserva" . "<br>";
 echo "<br>";
-
 ?>
 
 <!DOCTYPE html>
