@@ -2,7 +2,7 @@
 class Soporte
 {
     public $titulo;
-    protected $numero;
+    public $numero;
     private $precio;
     private const IVA = 0.21;
 
