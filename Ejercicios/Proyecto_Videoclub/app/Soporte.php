@@ -1,5 +1,5 @@
 <?php
-class Soporte
+class Soporte implements Resumible
 {
     public $titulo;
     public $numero;
@@ -35,7 +35,6 @@ class Soporte
         echo $this->titulo;
         echo "<br>";
         echo $this->precio . " € (IVA no incluido)";
-
     }
 }
 
