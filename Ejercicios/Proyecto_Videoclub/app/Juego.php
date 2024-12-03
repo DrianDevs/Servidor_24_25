@@ -11,6 +11,7 @@ class Juego extends Soporte
         $this->consola = $consola;
         $this->minNumJugadores = $minNumJugadores;
         $this->maxNumJugadores = $maxNumJugadores;
+        $this->alquilar = false;
     }
 
     public function muestraJugadoresPosibles()

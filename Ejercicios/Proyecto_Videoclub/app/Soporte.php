@@ -5,6 +5,7 @@ class Soporte implements Resumible
     public $numero;
     private $precio;
     private const IVA = 0.21;
+    public $alquilar = false;
 
     public function __construct($titulo, $numero, $precio)
     {

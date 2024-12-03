@@ -53,6 +53,7 @@ class Cliente
         if (!$this->tieneAlquileres($s) && $this->numSoportesAlquilados < $this->maxAlquilerConcurrente) {
             $this->numSoportesAlquilados++;
             array_push($this->soportesAlquilados, $s);
+            $s->alquilar = true;
 
             echo "<br>Se ha alquilado correctamente.";
             return true;
@@ -66,8 +67,10 @@ class Cliente
     {
         for ($i = 0; $i < count($this->soportesAlquilados); $i++) {
             if ($this->soportesAlquilados[$i]->numero == $numSoporte) {
+                $this->soportesAlquilados[$i]->alquilar = false;
                 unset($this->soportesAlquilados[$i]);
                 $this->numSoportesAlquilados--;
+
 
                 echo "<br>Se ha devuelto el soporte correctamente.";
                 return true;

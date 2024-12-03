@@ -7,6 +7,10 @@ class Videoclub
     private array $socios = [];
     private int $numSocios = 0;
 
+    private $numProductosAlquilados = 0;
+
+    private $numTotalAlquileres = 0;
+
     public function __construct($nombre)
     {
         $this->nombre = $nombre;
@@ -82,6 +86,30 @@ class Videoclub
         $soporte = $this->productos[$numeroSoporte - 1];
         $cliente->alquilar($soporte);
         return $this;
+    }
+
+    public function alquilarSocioProductos(int $numSocio, array $numerosProductos)
+    {
+        echo "<pre>";
+        print_r($this->socios[$numSocio - 1]);
+        echo "</pre>";
+        $alquilar = true;
+        foreach ($numerosProductos as $numProducto) {
+            echo "<pre>";
+            print_r($this->productos[$numProducto - 1]);
+            echo "</pre>";
+        }
+
+    }
+
+    public function getNumProductosAlquilados()
+    {
+        return $this->numProductosAlquilados;
+    }
+
+    public function getNumTotalAlquileres()
+    {
+        return $this->numTotalAlquileres;
     }
 }
 ?>
