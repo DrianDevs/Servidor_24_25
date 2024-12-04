@@ -6,9 +6,7 @@ class Videoclub
     private int $numProductos = 0;
     private array $socios = [];
     private int $numSocios = 0;
-
     private $numProductosAlquilados = 0;
-
     private $numTotalAlquileres = 0;
 
     public function __construct($nombre)
@@ -49,10 +47,10 @@ class Videoclub
         return $this;
     }
 
-    public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3)
+    public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3, $usuario, $password)
     {
         $numero = count($this->socios) + 1;
-        $socio = new Cliente($nombre, $numero, $maxAlquileresConcurrentes);
+        $socio = new Cliente($nombre, $numero, $maxAlquileresConcurrentes, $usuario, $password);
 
         array_push($this->socios, $socio);
         $this->numSocios++;
@@ -68,6 +66,7 @@ class Videoclub
             print_r($producto);
             echo "</pre>";
         }
+        return $this->productos;
     }
 
     public function listarSocios()
@@ -78,6 +77,7 @@ class Videoclub
             print_r($socio);
             echo "</pre>";
         }
+        return $this->socios;
     }
 
     public function alquilaSocioProducto($numeroCliente, $numeroSoporte)
@@ -90,14 +90,22 @@ class Videoclub
 
     public function alquilarSocioProductos(int $numSocio, array $numerosProductos)
     {
-        echo "<pre>";
-        print_r($this->socios[$numSocio - 1]);
-        echo "</pre>";
         $alquilar = true;
         foreach ($numerosProductos as $numProducto) {
-            echo "<pre>";
-            print_r($this->productos[$numProducto - 1]);
-            echo "</pre>";
+            for ($i = 0; $i < count($this->productos); $i++) {
+                if ($this->productos[$i]->numero === $numProducto && $this->productos[$i]->alquilar === true) {
+                    $alquilar = false;
+                }
+            }
+        }
+        if ($alquilar) {
+            foreach ($numerosProductos as $numProducto) {
+                $this->alquilaSocioProducto($numSocio, $numProducto);
+                $this->numProductosAlquilados++;
+                $this->numTotalAlquileres++;
+            }
+        } else {
+            echo "<p>No se ha podido alquilar alguno de los productos, ya que ya está alquilado.</p>";
         }
 
     }
