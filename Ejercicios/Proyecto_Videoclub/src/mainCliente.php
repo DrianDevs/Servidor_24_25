@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuario'])) { //Si se ha llegado sin iniciar sesión, redi
     exit;
 } else {
     $_SESSION['videoclub'] = $vc;   //Se inicializan los datos del videoclub de ini.php
-    $socios = $_SESSION['videoclub']->listarSocios();
+    $socios = $_SESSION['videoclub']->getSocios();
     $iniciar = false;
     $cliente;
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION['usuario'])) { //Si se ha llegado sin iniciar sesión, redi
 
         echo "<h3>Productos alquilados actualmente</h3>";
         echo "<pre>";
-        print_r($cliente->soportesAlquilados);
+        print_r($cliente->getAlquileres());
         echo "</pre>";
     } else {
         header('Location: ../index.php');

@@ -16,6 +16,4 @@ $vc->incluirSocio("Amancio Ortega", 2, "admin", "admin")->incluirSocio("Pablo Pi
 //Alquileres
 $vc->alquilaSocioProducto(2, 4);
 $vc->alquilarSocioProductos(1, [2, 3]);
-
-
 ?>

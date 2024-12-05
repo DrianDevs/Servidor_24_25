@@ -4,7 +4,7 @@ class Cliente
 {
     public string $nombre;
     private int $numero;
-    public array $soportesAlquilados = [];
+    private array $soportesAlquilados = [];
     private int $numSoportesAlquilados = 0;
     private int $maxAlquilerConcurrente;
     private $usuario;
@@ -58,8 +58,6 @@ class Cliente
             $this->numSoportesAlquilados++;
             array_push($this->soportesAlquilados, $s);
             $s->alquilar = true;
-
-            echo "<br>Se ha alquilado correctamente.";
             return true;
         } else {
             echo "<br>No es posible alquilar.";
@@ -88,6 +86,15 @@ class Cliente
     public function listaAlquileres()
     {
         echo "<br>El cliente tiene " . $this->numSoportesAlquilados . " soporte alquilados";
+        foreach ($this->soportesAlquilados as $soporte) {
+            echo "<pre>";
+            print_r($soporte);
+            echo "</pre>";
+        }
+    }
+
+    public function getAlquileres()
+    {
         foreach ($this->soportesAlquilados as $soporte) {
             echo "<pre>";
             print_r($soporte);

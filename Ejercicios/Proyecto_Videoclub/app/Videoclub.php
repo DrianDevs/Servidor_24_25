@@ -110,6 +110,11 @@ class Videoclub
 
     }
 
+    public function actualizarSocio()
+    {
+        //Falta el cuerpo
+    }
+
     public function getNumProductosAlquilados()
     {
         return $this->numProductosAlquilados;
@@ -118,6 +123,11 @@ class Videoclub
     public function getNumTotalAlquileres()
     {
         return $this->numTotalAlquileres;
+    }
+
+    public function getSocios()
+    {
+        return $this->socios;
     }
 }
 ?>

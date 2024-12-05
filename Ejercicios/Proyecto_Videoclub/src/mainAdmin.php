@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once("ini.php");
+session_start();
 
 
 if (!isset($_SESSION['usuario'])) { //Si se ha llegado sin iniciar sesión, redirigir a index
@@ -8,9 +8,13 @@ if (!isset($_SESSION['usuario'])) { //Si se ha llegado sin iniciar sesión, redi
     exit;
 } else {
     echo "<h1>Hola, " . $_SESSION['usuario'] . "</h1>";
-    echo '<br><a href="../cerrar_sesion.php">Cerrar sesión</a>';
+    echo '<a href="formCreateCliente.php"><button>Crear cliente</button></a>';
+    echo '<a href="formUpdateCliente.php"><button>Modificar cliente</button></a>';
+    echo '<br><br><a href="../cerrar_sesion.php">Cerrar sesión</a>';
 
-    $_SESSION['videoclub'] = $vc;   //Se inicializan los datos del videoclub de ini.php
+    if (!isset($_SESSION['videoclub'])) {
+        $_SESSION['videoclub'] = $vc;   //Se inicializan los datos del videoclub de ini.php si es la primera vez
+    }
 
     echo "<h3>Listado de clientes</h3>";
     $_SESSION['videoclub']->listarSocios();
