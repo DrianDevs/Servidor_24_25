@@ -9,14 +9,16 @@ $vc->incluirCintaVideo("Los cazafantasmas", 3.5, 107)->incluirCintaVideo("El nom
 //voy a crear algunos socios 
 $vc->incluirSocio("Amancio Ortega", 2)->incluirSocio("Pablo Picasso", 2);
 
+$vc->alquilaSocioProducto(2, 4);
+$vc->alquilarSocioProductos(1, [2, 3]);
+
+
 //listo los productos 
 $vc->listarProductos();
 //listo los socios 
 $vc->listarSocios();
 
-$vc->alquilarSocioProductos(1, [2, 3]);
-//$vc->alquilaSocioProducto(1, 2)->alquilaSocioProducto(1, 3)->alquilaSocioProducto(1, 2)->alquilaSocioProducto(1, 6);
-
+//$vc->alquilaSocioProducto(2, 2)->alquilaSocioProducto(1, 3)->alquilaSocioProducto(1, 2)->alquilaSocioProducto(1, 6);
 //alquilo otra vez el soporte 2 al socio 1. 
 // no debe dejarme porque ya lo tiene alquilado 
 

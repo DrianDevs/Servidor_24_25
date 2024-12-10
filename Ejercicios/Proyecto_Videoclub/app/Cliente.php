@@ -4,15 +4,19 @@ class Cliente
 {
     public string $nombre;
     private int $numero;
-    public array $soportesAlquilados = [];
+    private array $soportesAlquilados = [];
     private int $numSoportesAlquilados = 0;
     private int $maxAlquilerConcurrente;
+    private $usuario;
+    private $password;
 
-    public function __construct($nombre, $numero, $maxAlquilerConcurrente = 3)
+    public function __construct($nombre, $numero, $maxAlquilerConcurrente = 3, $usuario, $password)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
         $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
+        $this->usuario = $usuario;
+        $this->password = $password;
     }
 
     public function getNumero()
@@ -54,8 +58,6 @@ class Cliente
             $this->numSoportesAlquilados++;
             array_push($this->soportesAlquilados, $s);
             $s->alquilar = true;
-
-            echo "<br>Se ha alquilado correctamente.";
             return true;
         } else {
             echo "<br>No es posible alquilar.";
@@ -89,6 +91,20 @@ class Cliente
             print_r($soporte);
             echo "</pre>";
         }
+    }
+
+    public function getAlquileres()
+    {
+        foreach ($this->soportesAlquilados as $soporte) {
+            echo "<pre>";
+            print_r($soporte);
+            echo "</pre>";
+        }
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 }
 ?>
