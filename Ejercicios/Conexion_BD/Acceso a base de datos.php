@@ -1,30 +1,26 @@
 <?php
 try {
-    // Configuración de conexión
-    $mysql = "mysql:host=localhost;dbname=dwes_manana_prueba;charset=UTF8";
-    $user = "dwes_manana";
-    $password = "12345";
+    $mysql =
+        "mysql:host=localhost;dbname=dwes_manana_prueba;charset=UTF8";
+    $user =
+        "root";
+    $password = "";
     $opciones = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+    $conexion = new PDO($mysql, $user, $password);
 
-    // Conexión a la base de datos
-    $conexion = new PDO($mysql, $user, $password, $opciones);
-    $resultado = $conexion->query('select * FROM mensajes2');
-    echo "<h3>Registros en la tabla 'mensajes2':</h3>";
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Mensaje</th></tr>";
-
-    foreach ($resultado as $fila) {
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars($fila['id']) . "</td>";
-        echo "<td>" . htmlspecialchars($fila['mensaje']) . "</td>";
-        echo "</tr>";
-    }
-
-    echo "</table>";
-
-    $conexion = null;
+    $consulta = $conexion->prepare("insert into mensajes2 (nombre, email, mensaje)
+values (?,?,?)");
+    $nombre = 'Nombre';
+    $descripcion = 'emanil@email.com';
+    $precio = 'Texto mensaje PDO';
+    $consulta->bindParam(1, $nombre);
+    $consulta->bindParam(2, $descripcion);
+    $consulta->bindParam(3, $precio);
+    $consulta->execute();
 } catch (PDOException $e) {
     // Mostramos mensaje en caso de error
     echo "<p>" . $e->getMessage() . "</p>";
+    exit();
 }
+$conexion = null;
 ?>

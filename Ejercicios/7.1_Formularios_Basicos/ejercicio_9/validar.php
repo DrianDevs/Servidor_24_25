@@ -1,8 +1,8 @@
 <?php
-$email = $_POST["email"];
+$descripcion = $_POST["email"];
 $url = $_POST["url"];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($descripcion, FILTER_VALIDATE_EMAIL)) {
     echo "<p>Correo electrónico no válido</p>";
 } else {
     echo "<p>Correo electrónico válido</p>";
