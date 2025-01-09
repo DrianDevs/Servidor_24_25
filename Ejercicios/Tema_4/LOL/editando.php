@@ -19,7 +19,7 @@ if (isset($_POST['Editar'])) {
     $consulta->bindParam(':dificultad', $_POST['dificultad']);
     $consulta->bindParam(':descripcion', $_POST['descripcion']);
     $consulta->execute();
-    header("Location: campeones2.php");
+    header("Location: campeones3.php");
 } else {
     $resultado = $conexion->query('select * FROM campeones WHERE id=' . $_GET['id']);
     echo "<form action='' method='post'>";
