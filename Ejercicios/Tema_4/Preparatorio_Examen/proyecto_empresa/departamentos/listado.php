@@ -36,5 +36,5 @@ try {
     // Cerrar la conexion   
     $conexion = null;
 } catch (PDOException $e) {
-    echo "Error al obtener las sedes: " . $e->getMessage();
+    echo "Error al hacer la consulta: " . $e->getMessage();
 }
