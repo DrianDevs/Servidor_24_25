@@ -8,7 +8,7 @@ try {
     $consulta = $conexion->prepare("SELECT torneos.id, torneos.nombre, torneos.ciudad, superficies.nombre AS 'superficie' FROM torneos JOIN superficies ON torneos.superficie_id = superficies.id ORDER BY torneos.id;");
     $consulta->execute();
 
-    echo "<h1>Listado de tenistas</h1>";
+    echo "<h1>Listado de torneos</h1>";
     echo "<table border='1'>";
     echo "<tr><th>Id</th><th>Nombre</th><th>Ciudad</th><th>Superficio</th></tr>";
 
