@@ -100,7 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post" action="modificar_1.php">
         <input type="hidden" name="id_torneo" value="<?php echo htmlspecialchars($idTorneo); ?>">
         <label for="nombre_torneo">Nombre del Torneo:</label>
-        <input type="text" id="nombre_torneo" name="nombre_torneo" value="<?php echo htmlspecialchars($nombreTorneo); ?>"><br>
+        <input type="text" id="nombre_torneo" name="nombre_torneo"
+            value="<?php echo htmlspecialchars($nombreTorneo); ?>"><br>
 
         <label for="ciudad">Ciudad:</label>
         <input type="text" id="ciudad" name="ciudad" value="<?php echo htmlspecialchars($ciudad); ?>"><br>
