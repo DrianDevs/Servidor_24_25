@@ -1,0 +1,20 @@
+{
+    "name": "driandevs/composer_laravel",
+    "autoload": {
+        "psr-4": {
+            "Driandevs\\ComposerLaravel\\": "src/",
+            "Driandevs\\App\\": "app/",
+            "Dwes\\Ejemplos\\Util": "src/util"
+        }
+    },
+    "authors": [
+        {
+            "name": "DrianDevs",
+            "email": "adriangm8110@gmail.com"
+        }
+    ],
+    "require": {
+        "psr/log": "^3.0",
+        "monolog/monolog": "^3.8"
+    }
+}
