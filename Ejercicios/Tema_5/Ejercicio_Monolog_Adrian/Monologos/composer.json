@@ -1,0 +1,18 @@
+{
+  "name": "daw_m/monologos",
+  "autoload": {
+    "psr-4": {
+      "Monologos\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "DrianDevs",
+      "email": "adriangm8110@gmail.com"
+    }
+  ],
+  "require": {
+    "psr/log": "^3.0",
+    "monolog/monolog": "^3.8"
+  }
+}
