@@ -1,6 +1,8 @@
 <?php
 require_once("../autoload.php");
 
+//Este ejercicio no funcionara si la clase Soporte es abstracta
+
 $soporte1 = new Soporte("Tenet", 22, 3);
 echo "<strong>" . $soporte1->titulo . "</strong>";
 echo "<br>Precio: " . $soporte1->getPrecio() . " euros";
