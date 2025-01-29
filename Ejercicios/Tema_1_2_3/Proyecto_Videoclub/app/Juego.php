@@ -11,13 +11,12 @@ class Juego extends Soporte
         $this->consola = $consola;
         $this->minNumJugadores = $minNumJugadores;
         $this->maxNumJugadores = $maxNumJugadores;
-        $this->alquilar = false;
     }
 
     public function muestraJugadoresPosibles()
     {
         if ($this->minNumJugadores === 1 && $this->maxNumJugadores === 1) {
-            echo "Para un jugador.";
+            echo "Para 1 jugador.";
         } elseif ($this->minNumJugadores === $this->maxNumJugadores) {
             echo "Para {$this->minNumJugadores} jugadores.";
         } else {
@@ -27,11 +26,9 @@ class Juego extends Soporte
 
     public function muestraResumen()
     {
-        echo "<br>Juego para: " . $this->consola;
         parent::muestraResumen();
+        echo "<br>Juego para: " . $this->consola;
         echo "<br>";
         $this->muestraJugadoresPosibles();
     }
 }
-
-?>

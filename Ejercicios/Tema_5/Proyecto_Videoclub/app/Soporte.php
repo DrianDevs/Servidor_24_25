@@ -1,4 +1,7 @@
 <?php
+
+namespace Driandevs\ProyectoVideoclub;
+
 // Convertir la clase a No Abstracta para hacer funcionar inicio.php
 abstract class Soporte implements Resumible
 {

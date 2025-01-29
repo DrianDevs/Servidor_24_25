@@ -1,4 +1,7 @@
 <?php
+
+namespace Driandevs\ProyectoVideoclub;
+
 class Dvd extends Soporte
 {
     public $idiomas;

@@ -2,8 +2,8 @@
 require_once("../autoload.php");
 
 //instanciamos un par de objetos cliente
-$cliente1 = new Cliente("Bruce Wayne", 23);
-$cliente2 = new Cliente("Clark Kent", 33);
+$cliente1 = new Cliente("Bruce Wayne", 23, "batman", "1234");
+$cliente2 = new Cliente("Clark Kent", 33, "superman", "1234");
 
 //mostramos el número de cada cliente creado 
 echo "<br>El identificador del cliente 1 es: " . $cliente1->getNumero();
@@ -19,6 +19,7 @@ $soporte4 = new Dvd("El Imperio Contraataca", 4, 3, "es,en", "16:9");
 $cliente1->alquilar($soporte1);
 $cliente1->alquilar($soporte2);
 $cliente1->alquilar($soporte3);
+
 
 //voy a intentar alquilar de nuevo un soporte que ya tiene alquilado
 $cliente1->alquilar($soporte1);

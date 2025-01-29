@@ -1,5 +1,7 @@
 <?php
-require_once("../autoload.php");
+require __DIR__ . '../vendor/autoload.php';
+
+use Driandevs\ProyectoVideoclub;
 
 //Este ejercicio no funcionara si la clase Soporte es abstracta
 

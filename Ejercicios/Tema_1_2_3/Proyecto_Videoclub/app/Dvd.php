@@ -10,7 +10,6 @@ class Dvd extends Soporte
         parent::__construct($titulo, $numero, $precio);
         $this->idiomas = $idiomas;
         $this->formatoPantalla = $formatoPantalla;
-        $this->alquilar = false;
     }
 
     public function muestraResumen()
@@ -19,6 +18,4 @@ class Dvd extends Soporte
         echo "<br>Idiomas: " . $this->idiomas;
         echo "<br>Formato Pantalla: " . $this->formatoPantalla;
     }
-
 }
-?>

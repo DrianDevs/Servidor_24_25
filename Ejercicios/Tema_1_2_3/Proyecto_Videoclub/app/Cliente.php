@@ -1,5 +1,5 @@
 <?php
-require_once("../autoload.php");
+
 class Cliente
 {
     public string $nombre;
@@ -10,13 +10,15 @@ class Cliente
     private $usuario;
     private $password;
 
-    public function __construct($nombre, $numero, $maxAlquilerConcurrente = 3, $usuario, $password)
+    public function __construct($nombre, $numero, $usuario, $password, $maxAlquilerConcurrente = 3)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
-        $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
+
         $this->usuario = $usuario;
         $this->password = $password;
+
+        $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
     }
 
     public function getNumero()
@@ -44,8 +46,8 @@ class Cliente
 
     public function tieneAlquileres(Soporte $s): bool
     {
-        foreach ($this->soportesAlquilados as $soporte) {
-            if ($soporte->getNumero() === $s->getNumero()) {
+        foreach ($this->soportesAlquilados as $soporteAlquilado) {
+            if ($soporteAlquilado->numero == $s->numero) {
                 return true;
             }
         }
@@ -58,9 +60,17 @@ class Cliente
             $this->numSoportesAlquilados++;
             array_push($this->soportesAlquilados, $s);
             $s->alquilar = true;
+            $s->muestraResumen();
+            echo "<br>Alquilado soporte a: $this->nombre<br>";
             return true;
+        } else if ($this->tieneAlquileres($s)) {
+            echo "<br>El cliente ya tiene alquilado el soporte $s->titulo <br>";
+            return false;
+        } else if ($this->numSoportesAlquilados >= $this->maxAlquilerConcurrente) {
+            echo "<br>Este cliente ya tiene el máximo de alquileres permitidos<br>";
+            return false;
         } else {
-            echo "<br>No es posible alquilar.";
+            echo "<br>No es posible alquilar.<br>";
             return false;
         }
     }
@@ -77,9 +87,8 @@ class Cliente
                 echo "<br>Se ha devuelto el soporte correctamente.";
                 return true;
             }
-
         }
-        echo "<br>No se ha podido devolver el soporte.";
+        echo "<br>No se encontró el soporte en los alquileres";
         return false;
     }
 
@@ -107,4 +116,3 @@ class Cliente
         return $this->usuario;
     }
 }
-?>

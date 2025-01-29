@@ -1,5 +1,10 @@
 <?php
-require_once("../autoload.php");
+require '../vendor/autoload.php';
+
+use Driandevs\ProyectoVideoclub\Dvd;
+use Driandevs\ProyectoVideoclub\CintaVideo;
+use Driandevs\ProyectoVideoclub\Juego;
+use Driandevs\ProyectoVideoclub\Cliente;
 
 //instanciamos un par de objetos cliente
 $cliente1 = new Cliente("Bruce Wayne", 23, "batman", "1234");

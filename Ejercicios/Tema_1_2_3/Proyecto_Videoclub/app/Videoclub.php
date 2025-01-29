@@ -47,10 +47,10 @@ class Videoclub
         return $this;
     }
 
-    public function incluirSocio($nombre, $maxAlquileresConcurrentes = 3, $usuario, $password)
+    public function incluirSocio($nombre, $usuario, $password, $maxAlquileresConcurrentes = 3)
     {
         $numero = count($this->socios) + 1;
-        $socio = new Cliente($nombre, $numero, $maxAlquileresConcurrentes, $usuario, $password);
+        $socio = new Cliente($nombre, $numero, $usuario, $password, $maxAlquileresConcurrentes);
 
         array_push($this->socios, $socio);
         $this->numSocios++;
@@ -107,7 +107,6 @@ class Videoclub
         } else {
             echo "<p>No se ha podido alquilar alguno de los productos, ya que ya está alquilado.</p>";
         }
-
     }
 
     public function actualizarSocio()
@@ -130,4 +129,3 @@ class Videoclub
         return $this->socios;
     }
 }
-?>

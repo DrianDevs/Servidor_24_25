@@ -1,5 +1,12 @@
 <?php
 
+namespace Driandevs\ProyectoVideoclub;
+
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Processor\IntrospectionProcessor;
+
 class Cliente
 {
     public string $nombre;
@@ -9,16 +16,27 @@ class Cliente
     private int $maxAlquilerConcurrente;
     private $usuario;
     private $password;
+    private Logger $logger;
 
     public function __construct($nombre, $numero, $usuario, $password, $maxAlquilerConcurrente = 3)
     {
         $this->nombre = $nombre;
         $this->numero = $numero;
-
         $this->usuario = $usuario;
         $this->password = $password;
-
         $this->maxAlquilerConcurrente = $maxAlquilerConcurrente;
+        $this->logger = new Logger('VideoclubLogger');
+
+        $handler = new RotatingFileHandler(__DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'miLog.log', 0, Logger::DEBUG);
+        $this->logger->pushHandler($handler);
+        echo __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'miLog.log';
+
+        // Manejador de salida de error
+        $errorHandler = new StreamHandler('php://stderr', Logger::DEBUG);
+        $this->logger->pushHandler($errorHandler);
+
+        // Procesador de introspección
+        $this->logger->pushProcessor(new IntrospectionProcessor(Logger::DEBUG));
     }
 
     public function getNumero()

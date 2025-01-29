@@ -1,5 +1,7 @@
 <?php
-require_once("../autoload.php");
+require '../vendor/autoload.php';
+
+use Driandevs\ProyectoVideoclub\Videoclub;
 
 $vc = new Videoclub("Severo 8A");
 //voy a incluir unos cuantos soportes de prueba 

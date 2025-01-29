@@ -1,4 +1,7 @@
 <?php
+
+namespace Driandevs\ProyectoVideoclub;
+
 class Juego extends Soporte
 {
     public $consola;
